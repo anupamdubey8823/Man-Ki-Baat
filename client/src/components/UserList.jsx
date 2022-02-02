@@ -68,7 +68,7 @@ const UserList = ({ setSelectedUsers }) => {
             setLoading(false);
         }
         if (client) getUsers();
-    }, []);
+    });
 
     if (error) {
         return (
