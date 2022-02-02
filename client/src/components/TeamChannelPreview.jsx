@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, useChat, useChatContext } from "stream-chat-react";
+import { Avatar, useChatContext } from "stream-chat-react";
 
 const TeamChannelPreview = ({ channel, type, setActiveChannel, setToggleContainer, setIsCreating, setIsEditing }) => {
   
@@ -13,8 +13,6 @@ const TeamChannelPreview = ({ channel, type, setActiveChannel, setToggleContaine
 
   const DirectPreview = () => {
     const members = Object.values(channel.state.members).filter(({ user }) => user.id !== client.userID);
-
-    // console.log(members[0]);
 
     return (
       <div className='channel-preview__item single'>
