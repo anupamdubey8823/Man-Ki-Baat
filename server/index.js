@@ -18,7 +18,7 @@ app.use(express.urlencoded());
 app.use("/auth", authRoutes);
 
 app.get('/', (req, res) => {
-    res.send("Hello World");
+    res.send("Hello from Man Ki Baat backend!");
 })
 
 app.post('/', (req, res) => {
@@ -30,7 +30,7 @@ app.post('/', (req, res) => {
                 if (!user.online) {
                     twilioClient.messages.create({
                         body: `You have a new message from ${message.user.fullName} - ${message.text}`,
-                        messagingServiceSid: process.env.PORT,
+                        messagingServiceSid: messagingServiceSid,
                         to: user.phoneNumber
                     }) 
                     .then(() => console.log('Message sent'))
