@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 require("dotenv").config();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-const messagingServiceSid = process.env.MESSAGING_SERVICE_SID;
+const messageServiceSid = process.env.MESSAGING_SERVICE_SID;
 const twilioClient = require('twilio')(accountSid, authToken);
 
 app.use(cors());
@@ -30,7 +30,7 @@ app.post('/', (req, res) => {
                 if (!user.online) {
                     twilioClient.messages.create({
                         body: `You have a new message from ${message.user.fullName} - ${message.text}`,
-                        messagingServiceSid: messagingServiceSid,
+                        messagingServiceSid: messageServiceSid,
                         to: user.phoneNumber
                     }) 
                     .then(() => console.log('Message sent'))
