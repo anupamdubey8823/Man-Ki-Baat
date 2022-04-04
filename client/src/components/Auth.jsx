@@ -3,6 +3,7 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 import signInImage from '../assets/signup.jpg';
+import { BACKEND_URL } from '../constants/APIurl';
 
 const initialState = {
     fullName: "",
@@ -32,8 +33,9 @@ const Auth = () => {
         e.preventDefault();
 
         const { username, password, phoneNumber, avatarURL } = form;
-        const URL = "https://mkbserver.herokuapp.com/auth";
-        const { data: {token, userId, hashedPassword, fullName } } = await axios.post(`${URL}/${isSignup ? "signup" : "login" }`, {
+        const url = new URL("/auth", BACKEND_URL);
+
+        const { data: {token, userId, hashedPassword, fullName } } = await axios.post(`${url}/${isSignup ? "signup" : "login" }`, {
             username, 
             password, 
             fullName: form.fullName, 
